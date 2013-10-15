@@ -3,17 +3,18 @@ var Cell = function(status) {
 };
 
 var Board = function() {
-
+  this.grid = []
 }
 
 Board.prototype.initializeGrid = function (rows) {
-  var grid = [];
   for (var y = 0; y < rows; y++) {
     var row = [];
     for (var x = 0; x < rows; x++) {
-      row.push(x);
+      var cell = new Cell(true);
+      row.push(cell);
     }
-    grid.push(row);
+    this.grid.push(row);
   };
-  return grid;
 };
+
+
