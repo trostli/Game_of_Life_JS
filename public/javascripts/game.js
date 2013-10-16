@@ -10,6 +10,14 @@ var Cell = function(x,y) {
   this.y = y;
 };
 
+Cell.prototype.neighbors = function () {
+  return [
+  [this.x-1,this.y-1],[this.x,this.y-1],[this.x+1,this.y-1],
+  [this.x-1,this.y]                    ,[this.x+1,this.y],
+  [this.x-1,this.y+1],[this.x,this.y+1],[this.x+1,this.y+1]
+  ];
+};
+
 var Board = function() {
   this.grid = [];
 };
@@ -24,15 +32,23 @@ Board.prototype.initializeGrid = function (rows) {
   }
 };
 
-
-
-
-
+Board.prototype.scan = function () {
+  var size = this.grid.length;
+  var allCells = [];
+  for (var y = 0; y < size; y++) {
+    for (var x = 0; x < size; x++) {
+      if (this.grid[y][x] !== null) {
+        allCells.push(this.grid[y][x]);
+      }
+    }
+  }
+  return allCells;
+};
 
 //Helper methods
 var randomLife = function (x,y) {
   var rand = Math.floor(Math.random()*2);
-  if (rand == 1) {
+  if (rand === 1) {
     cell = new Cell(x,y);
     return cell;
   }
