@@ -10,9 +10,11 @@ describe("Board", function() {
     expect(board.grid[4].length).toEqual(5);
   });
 
-  it("it should have a method to populate the grid with Cell objects", function() {
+  it("it should have a method to populate the grid with null objects", function() {
     cell = new Cell(true);
     board.initializeGrid(5);
-    expect(board.grid[4][4]).toEqual(cell)
+    expect(board.grid[4]).toContain(null);
   });
+
+  it("should have a method to iterate over the board  ")
 });

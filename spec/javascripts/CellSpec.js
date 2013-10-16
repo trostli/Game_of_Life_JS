@@ -5,8 +5,9 @@ describe("Cell", function() {
 
   });
 
-  it("should be able to tell you if it's alive or dead", function() {
-    cell = new Cell(true)
-    expect(cell.status).toEqual(true);
+  it("should be able to tell you it's position", function() {
+    cell = new Cell(3,2);
+    expect(cell.x).toEqual(3);
+    expect(cell.y).toEqual(2);
   });
 });
