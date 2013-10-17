@@ -8,6 +8,7 @@ var addElement = function(){
 var Cell = function(x,y) {
   this.x = x;
   this.y = y;
+  this.neighborCount;
 };
 
 Cell.prototype.neighbors = function () {
@@ -43,6 +44,13 @@ Board.prototype.scan = function () {
     }
   }
   return allCells;
+};
+
+Board.prototype.checkBoard = function () {
+  var allCells = this.scan();
+  _.each(allCells, function (cell) {
+    if (allCells.pop().x);  
+  });
 };
 
 //Helper methods

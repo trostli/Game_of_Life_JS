@@ -16,5 +16,9 @@ describe("Board", function() {
 
   it("should have a method to iterate over the board and returns all the cells", function() {
     expect(board.scan()).toBeDefined();
+  });
+
+  it("should have a method to check if any of the cells neighbor each other", function() {
+    expect(board.checkBoard()).toBeDefined();
   })
 });
