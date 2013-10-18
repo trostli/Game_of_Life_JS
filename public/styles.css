@@ -1,15 +1,5 @@
 #board {
-  background-color: red;
-  height: 400px;
-  width: 400px;
-}
-
-.cell {
-  background-color: purple;
-  height: 20px;
-  width: 20px;
-}
-
-div {
-  background-color: blue;
+  background-color: grey;
+  border-style: solid;
+  border-width:2px;
 }

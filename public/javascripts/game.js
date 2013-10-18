@@ -33,7 +33,7 @@ Board.prototype.initializeGrid = function (rows) {
   }
 };
 
-Board.prototype.scan = function () {
+Board.prototype.allCells = function () {
   var size = this.grid.length;
   var allCells = [];
   for (var y = 0; y < size; y++) {
@@ -47,7 +47,7 @@ Board.prototype.scan = function () {
 };
 
 Board.prototype.allCellCoord = function () {
-  var allCells = this.scan();
+  var allCells = this.allCells();
   var allCellCoord = []
   _.each(allCells, function(cell){
     allCellCoord.push([cell.x, cell.y])
@@ -56,12 +56,12 @@ Board.prototype.allCellCoord = function () {
 };
 
 Board.prototype.checkBoard = function () {
-  var allCells = this.scan();
+  var allCells = this.allCells();
   var allCellCoord = this.allCellCoord();
   //while allCells.length != 0
   while (allCells.length > 0){
     var cell = allCells.pop();
-    var cell.neighborCount = 0; //Reset neighbor count
+    cell.neighborCount = 0; //Reset neighbor count
     var cellCoord = allCellCoord.pop();
     console.log("Cell coordinates: ");
     console.log(cellCoord);
@@ -100,3 +100,7 @@ var randomLife = function (x,y) {
     return null;
   }
 };
+
+
+board = new Board
+board.initializeGrid(5);
