@@ -60,8 +60,8 @@ Board.prototype.checkBoard = function () {
   var allCellCoord = this.allCellCoord();
   //while allCells.length != 0
   while (allCells.length > 0){
-    var cell.neighborCount = 0; //Reset neighbor count
     var cell = allCells.pop();
+    var cell.neighborCount = 0; //Reset neighbor count
     var cellCoord = allCellCoord.pop();
     console.log("Cell coordinates: ");
     console.log(cellCoord);
