@@ -8,7 +8,7 @@ var addElement = function(){
 var Cell = function(x,y) {
   this.x = x;
   this.y = y;
-  this.neighborCount;
+  this.neighborCount = 0;
 };
 
 Cell.prototype.neighbors = function () {
@@ -46,11 +46,46 @@ Board.prototype.scan = function () {
   return allCells;
 };
 
+Board.prototype.allCellCoord = function () {
+  var allCells = this.scan();
+  var allCellCoord = []
+  _.each(allCells, function(cell){
+    allCellCoord.push([cell.x, cell.y])
+  });
+  return allCellCoord;
+};
+
 Board.prototype.checkBoard = function () {
   var allCells = this.scan();
-  _.each(allCells, function (cell) {
-    if (allCells.pop().x);  
-  });
+  var allCellCoord = this.allCellCoord();
+  //while allCells.length != 0
+  while (allCells.length > 0){
+    var cell = allCells.pop();
+    var cellCoord = allCellCoord.pop();
+    console.log("Cell coordinates: ");
+    console.log(cellCoord);
+    console.log("Neighbor coordinates: ");
+    var cellNeighborsCoord = cell.neighbors();
+    _.each(cellNeighborsCoord, function(neighborCoord){
+      console.log(neighborCoord);
+    });
+    console.log("All cells coordinates: ")
+    _.each(allCellCoord, function(cellCoord){
+      console.log(cellCoord);
+    });
+    console.log("Intersection: ")
+    _.each(cellNeighborsCoord, function(neighborCoord){
+      _.each(allCellCoord, function(otherCellCoord){
+        if (_.isEqual(neighborCoord, otherCellCoord)){
+          console.log("I found one")
+          cell.neighborCount += 1;
+        }
+      })
+    })
+    console.log("Neighbor count: ")
+    console.log(cell.neighborCount)
+    console.log("--------------------")
+  };
 };
 
 //Helper methods
