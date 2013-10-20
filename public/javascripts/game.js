@@ -58,11 +58,10 @@ Board.prototype.allCellCoord = function () {
 Board.prototype.checkBoard = function () {
   var allCells = this.allCells();
   var allCellCoord = this.allCellCoord();
-  //while allCells.length != 0
-  while (allCells.length > 0){
-    var cell = allCells.pop();
+  for (var i=0; i < allCells.length; i++){
+    var cell = allCells[i];
     cell.neighborCount = 0; //Reset neighbor count
-    var cellCoord = allCellCoord.pop();
+    var cellCoord = allCellCoord[i];
     console.log("Cell coordinates: ");
     console.log(cellCoord);
     console.log("Neighbor coordinates: ");
