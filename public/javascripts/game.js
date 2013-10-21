@@ -5,10 +5,11 @@ var addElement = function(){
   gameSpace.appendChild(cellSpace);
 };
 
-var Cell = function(x,y) {
+var Cell = function(x,y, life) {
   this.x = x;
   this.y = y;
   this.neighborCount = 0;
+  this.life = life;
 };
 
 Cell.prototype.neighbors = function () {
@@ -39,9 +40,7 @@ Board.prototype.allCells = function () {
   var allCells = [];
   for (var y = 0; y < size; y++) {
     for (var x = 0; x < size; x++) {
-      if (this.grid[y][x] !== null) {
         allCells.push(this.grid[y][x]);
-      }
     }
   }
   return allCells;
@@ -51,7 +50,9 @@ Board.prototype.allCellCoord = function () {
   var allCells = this.allCells();
   var allCellCoord = [];
   _.each(allCells, function(cell){
-    allCellCoord.push([cell.x, cell.y]);
+    if (cell.life === true){
+      allCellCoord.push([cell.x, cell.y]);
+    }
   });
   return allCellCoord;
 };
@@ -80,7 +81,7 @@ Board.prototype.rule1 = function() {
   this.gridCopy = this.grid;
   _.each(allCells, function(cell){
     if (cell.neighborCount < 2) {
-      board.gridCopy[cell.y][cell.x] = null;
+      board.gridCopy[cell.y][cell.x].life = false;
     }
   });
 };
@@ -90,7 +91,17 @@ Board.prototype.rule3 = function () {
   this.gridCopy = this.grid;
   _.each(allCells, function(cell){
     if (cell.neighborCount > 3) {
-      board.gridCopy[cell.y][cell.x] = null;
+      board.gridCopy[cell.y][cell.x].life = false;
+    }
+  });
+}
+
+Board.prototype.rule4 = function () {
+  var allCells = this.allCells();
+  this.gridCopy = this.grid;
+  _.each(allCells, function(cell){
+    if (cell.neighborCount === 3) {
+      board.gridCopy[cell.y][cell.x].life = true;
     }
   });
 }
@@ -99,16 +110,17 @@ Board.prototype.rule3 = function () {
 var randomLife = function (x,y) {
   var rand = Math.floor(Math.random()*2);
   if (rand === 1) {
-    cell = new Cell(x,y);
+    cell = new Cell(x,y,true);
     return cell;
   }
   else {
-    return null;
+    cell = new Cell(x,y,false);
+    return cell;
   }
 };
 
 
 board = new Board
-board.initializeGrid(15);
+board.initializeGrid(20);
 board.checkBoard();
 

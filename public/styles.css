@@ -1,14 +1,32 @@
 #board {
   background-color:rgba(255,0,0,0);
   opacity: 1;
-  /*border-style: solid;*/
   border-width:2px;
-}
+
+  transform: rotate3d(1,0,0,25deg);
+  -moz-transform: rotate3d(1,0,0,25deg);
+  -ms-transform: rotate3d(1,10,0,25deg);
+  -o-transform: rotate3d(1,0,0,25deg);
+  -webkit-transform: rotate3d(1,0,0,25deg);
+  }
 
 body {
   text-align: center;
   font-family: 'Tangerine', cursive;
   font-size: 150%;
+            perspective: 200px;
+            -moz-perspective: 200px;
+            -ms-perspective: 200px;
+            -o-perspective: 200px;
+            -webkit-perspective: 200px;
+
+            transform-style: preserve-3d;
+            -moz-transform-style: preserve-3d;
+            -ms-transform-style: preserve-3d;
+            -o-transform-style: preserve-3d;
+            -webkit-transform-style: preserve-3d;
+
+
 }
 
 .grad {
