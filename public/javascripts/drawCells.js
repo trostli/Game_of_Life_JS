@@ -1,4 +1,6 @@
 var canvas = document.getElementById('board');
+canvas.height = document.body.clientHeight - 100;
+canvas.width = canvas.height;
 var ctx = canvas.getContext("2d");
 
 var drawCell = function(x,y,width,height, border) {
@@ -6,7 +8,7 @@ var drawCell = function(x,y,width,height, border) {
 };
 
 var cellDimension = function(){
-  var cellWidth = (canvas.width/20);
+  var cellWidth = (canvas.width/15);
   return cellWidth
 };
 
