@@ -29,6 +29,11 @@ body {
 
 }
 
+footer {
+  font-family: 'Source Sans Pro';
+  font-size: 20px;
+}
+
 .grad {
   background: rgb(230,240,163);
   background: -moz-linear-gradient(top,  rgba(230,240,163,1) 0%, rgba(210,230,56,1) 50%, rgba(195,216,37,1) 51%, rgba(219,240,67,1) 100%);
