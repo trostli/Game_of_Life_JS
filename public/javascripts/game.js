@@ -48,9 +48,9 @@ Board.prototype.allCells = function () {
 
 Board.prototype.allCellCoord = function () {
   var allCells = this.allCells();
-  var allCellCoord = []
+  var allCellCoord = [];
   _.each(allCells, function(cell){
-    allCellCoord.push([cell.x, cell.y])
+    allCellCoord.push([cell.x, cell.y]);
   });
   return allCellCoord;
 };
@@ -88,6 +88,24 @@ Board.prototype.checkBoard = function () {
   };
 };
 
+Board.prototype.rule1 = function() {
+  var allCells = this.allCells();
+  _.each(allCells, function(cell){
+    if (cell.neighborCount < 2) {
+      board.grid[cell.y][cell.x] = null;
+    }
+  });
+};
+
+Board.prototype.rule3 = function () {
+  var allCells = this.allCells();
+  _.each(allCells, function(cell){
+    if (cell.neighborCount > 3) {
+      board.grid[cell.y][cell.x] = null;
+    }
+  });
+}
+
 //Helper methods
 var randomLife = function (x,y) {
   var rand = Math.floor(Math.random()*2);
@@ -103,3 +121,4 @@ var randomLife = function (x,y) {
 
 board = new Board
 board.initializeGrid(5);
+board.checkBoard();
