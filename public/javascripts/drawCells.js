@@ -6,13 +6,30 @@ var drawCell = function(x,y,width,height, border) {
 };
 
 var cellDimension = function(){
-  var cellWidth = (canvas.width/5);
+  var cellWidth = (canvas.width/20);
   return cellWidth
 };
 
-var allCells = board.allCells();
 
-_.each(allCells, function(cell){
-  var cellDim = cellDimension();
-  drawCell((cell.x)*cellDim,(cell.y)*cellDim,cellDim,cellDim, 5);
-});
+var drawBoard = function(){
+  var allCells = board.allCells();
+  _.each(allCells, function(cell){
+    var cellDim = cellDimension();
+    drawCell((cell.x)*cellDim,(cell.y)*cellDim,cellDim,cellDim, 5);
+  });
+};
+
+var clearBoard = function(){
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+};
+
+drawBoard();
+
+setInterval(function(){
+  board.rule1();
+  board.rule3();
+  board.grid = board.gridCopy;
+  clearBoard();
+  drawBoard();
+  board.checkBoard();
+}, 1500);

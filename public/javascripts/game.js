@@ -21,6 +21,7 @@ Cell.prototype.neighbors = function () {
 
 var Board = function() {
   this.grid = [];
+  this.gridCopy = [];
 };
 
 Board.prototype.initializeGrid = function (rows) {
@@ -62,46 +63,34 @@ Board.prototype.checkBoard = function () {
     var cell = allCells[i];
     cell.neighborCount = 0; //Reset neighbor count
     var cellCoord = allCellCoord[i];
-    console.log("Cell coordinates: ");
-    console.log(cellCoord);
-    console.log("Neighbor coordinates: ");
     var cellNeighborsCoord = cell.neighbors();
-    _.each(cellNeighborsCoord, function(neighborCoord){
-      console.log(neighborCoord);
-    });
-    console.log("All cells coordinates: ")
-    _.each(allCellCoord, function(cellCoord){
-      console.log(cellCoord);
-    });
-    console.log("Intersection: ")
+
     _.each(cellNeighborsCoord, function(neighborCoord){
       _.each(allCellCoord, function(otherCellCoord){
         if (_.isEqual(neighborCoord, otherCellCoord)){
-          console.log("I found one")
           cell.neighborCount += 1;
         }
       })
     })
-    console.log("Neighbor count: ")
-    console.log(cell.neighborCount)
-    console.log("--------------------")
   };
 };
 
 Board.prototype.rule1 = function() {
   var allCells = this.allCells();
+  this.gridCopy = this.grid;
   _.each(allCells, function(cell){
     if (cell.neighborCount < 2) {
-      board.grid[cell.y][cell.x] = null;
+      board.gridCopy[cell.y][cell.x] = null;
     }
   });
 };
 
 Board.prototype.rule3 = function () {
   var allCells = this.allCells();
+  this.gridCopy = this.grid;
   _.each(allCells, function(cell){
     if (cell.neighborCount > 3) {
-      board.grid[cell.y][cell.x] = null;
+      board.gridCopy[cell.y][cell.x] = null;
     }
   });
 }
@@ -120,5 +109,6 @@ var randomLife = function (x,y) {
 
 
 board = new Board
-board.initializeGrid(5);
+board.initializeGrid(20);
 board.checkBoard();
+
