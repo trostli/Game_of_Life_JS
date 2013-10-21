@@ -13,7 +13,7 @@ var drawCell = function(x,y,width,height, border) {
 };
 
 var cellDimension = function(){
-  var cellWidth = (canvas.width/20);
+  var cellWidth = (canvas.width/15);
   return cellWidth
 };
 
