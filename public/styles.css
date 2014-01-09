@@ -87,7 +87,7 @@
 body {
   text-align: center;
   font-size: 150%;
-  background-image: linear-gradient( #ADB6B3, #BEC2C1 50%);
+  background: linear-gradient( #ADB6B3, #BEC2C1 50%);
 }
 
 
