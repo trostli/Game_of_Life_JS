@@ -6,20 +6,37 @@
   width: 70%;
   margin-top: 2.65em;
 
-  transform: rotateX(25deg);
+  transform: rotateX(25deg), rotateY(45deg);
   -moz-transform: rotateX(25deg);
   -ms-transform: rotateX(1,10,0,25deg);
   -o-transform: rotateX(25deg);
-  -webkit-transform: rotateX(25deg);
+  -webkit-transform: rotateX(25deg), rotateY(45deg);
 
   -webkit-animation: rotateAni 60s infinite linear;
   -moz-animation: rotateAni 60s infinite linear;
   -o-animation: rotateAni 60s infinite linear;
   -ms-animation: rotateAni 60s infinite linear;
   animation: rotateAni 60s infinite linear;
-  }
+}
 
 @-webkit-keyframes rotateAni {
+  0% {
+    transform: rotateY(0deg);
+    -webkit-transform: rotateY(0deg);
+    -moz-transform: rotateY(0deg);
+    -o-transform: rotateY(0deg);
+    -ms-transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(360deg);
+    -webkit-transform: rotateY(360deg);
+    -moz-transform: rotateY(360deg);
+    -o-transform: rotateY(360deg);
+    -ms-transform: rotateY(360deg);
+  }
+}
+
+@keyframes rotateAni {
   0% {
     transform: rotateY(0deg);
     -webkit-transform: rotateY(0deg);
@@ -62,26 +79,14 @@
   -ms-perspective: 800px;
   -o-perspective: 800px;
   -webkit-perspective: 800px;
-
+/*
   transform-style: preserve-3d;
   -moz-transform-style: preserve-3d;
   -ms-transform-style: preserve-3d;
   -o-transform-style: preserve-3d;
   -webkit-transform-style: preserve-3d;
 
-  -webkit-animation: rotatePerspective 15s infinite linear;
-  animation: rotatePerspective 15s infinite linear;
-}
-
-@-webkit-keyframes rotatePerspective {
-  0% {
-    perspective: 700px;
-    -webkit-perspective: 700px;
-  }
-  100% {
-    perspective: 1000px;
-    -webkit-perspective: 1000px;
-  }
+*/
 }
 
 body {
