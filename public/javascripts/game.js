@@ -121,6 +121,6 @@ var randomLife = function (x,y) {
 
 
 board = new Board
-board.initializeGrid(15);
+board.initializeGrid(20);
 board.checkBoard();
 
