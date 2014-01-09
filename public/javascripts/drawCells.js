@@ -7,10 +7,6 @@ my_gradient.addColorStop(0,"black");
 my_gradient.addColorStop(1,"grey");
 ctx.fillStyle = my_gradient;
 
-// var viewport = $('#viewport');
-// var viewportWidth = viewport.css('width')
-// viewport.css('height', viewportWidth)
-
 
 var drawCell = function(x,y,width,height, border) {
   ctx.fillRect(x,y,width-border,height-border);
