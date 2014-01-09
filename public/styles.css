@@ -101,8 +101,17 @@ h1 {
   clear: both;
   font-family: 'Lato', Sans-serif;
   color: #290090;
-  text-align: left;
   margin: 0.5em auto;
+}
+
+.text {
+  float: left;
+  text-align: left;
+  color: #290090;
+  clear: both;
+  font-family: 'Lato', Sans-serif;
+  font-weight: 400;
+  font-size: 66%;
 }
 
 .headingBold {
