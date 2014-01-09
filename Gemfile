@@ -1,10 +1,9 @@
 source 'https://rubygems.org'
 
-ruby '1.9.3'
+ruby '2.0.0'
 
 gem 'sinatra'
 gem 'sinatra-activerecord'
-gem 'pg'
 
 group :development, :test do
 	gem 'shotgun'
