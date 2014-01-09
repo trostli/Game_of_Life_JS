@@ -42,4 +42,4 @@ setInterval(function(){
   clearBoard();
   drawBoard();
   board.checkBoard();
-}, 300);
+}, 600);
