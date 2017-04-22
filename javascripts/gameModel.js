@@ -1,9 +1,4 @@
-var addElement = function(){
-  var gameSpace = document.getElementById('board');
-  var cellSpace = document.createElement('div');
-  cellSpace.className = 'cell';
-  gameSpace.appendChild(cellSpace);
-};
+// Game Model Objects & Logic
 
 var Cell = function(x,y, life) {
   this.x = x;
@@ -20,21 +15,24 @@ Cell.prototype.neighbors = function () {
   ];
 };
 
-var Board = function() {
+var Board = function(size) {
   this.grid = [];
   this.gridCopy = [];
+  this.initializeGrid(size)
+  this.checkBoard()
 };
 
-Board.prototype.initializeGrid = function (rows) {
-  for (var y = 0; y < rows; y++) {
+Board.prototype.initializeGrid = function (size) {
+  for (var y = 0; y < size; y++) {
     var row = [];
-    for (var x = 0; x < rows; x++) {
-      row.push(randomLife(x,y));
+    for (var x = 0; x < size; x++) {
+      row.push(this.randomLife(x,y));
     }
     this.grid.push(row);
   }
 };
 
+// Collect all cells into an array
 Board.prototype.allCells = function () {
   var size = this.grid.length;
   var allCells = [];
@@ -46,6 +44,7 @@ Board.prototype.allCells = function () {
   return allCells;
 };
 
+// Collect all cell coordinates into an array
 Board.prototype.allCellCoord = function () {
   var allCells = this.allCells();
   var allCellCoord = [];
@@ -57,6 +56,7 @@ Board.prototype.allCellCoord = function () {
   return allCellCoord;
 };
 
+// Iterate through all cells to update neighbor count
 Board.prototype.checkBoard = function () {
   var allCells = this.allCells();
   var allCellCoord = this.allCellCoord();
@@ -76,38 +76,65 @@ Board.prototype.checkBoard = function () {
   };
 };
 
+// Apply Game of Life rules
+Board.prototype.performGeneration = function(){
+  this.rule1();
+  this.rule2();
+  this.rule3();
+  this.rule4();
+  this.grid = this.gridCopy;
+  this.checkBoard();
+}
+
+// Rule 1:
+// Any live cell with fewer than two live neighbors dies, as if caused by under-population.
 Board.prototype.rule1 = function() {
   var allCells = this.allCells();
   this.gridCopy = this.grid;
+  var self = this
   _.each(allCells, function(cell){
     if (cell.neighborCount < 2) {
-      board.gridCopy[cell.y][cell.x].life = false;
+      self.gridCopy[cell.y][cell.x].life = false;
     }
   });
 };
 
+// Rule 2:
+// Any live cell with two or three live neighbors lives on to the next generation.
+Board.prototype.rule2 = function() {
+  // Do nothing
+}
+
+// Rule 3:
+// Any live cell with more than three live neighbors dies, as if by overcrowding.
 Board.prototype.rule3 = function () {
   var allCells = this.allCells();
   this.gridCopy = this.grid;
+  var self = this
   _.each(allCells, function(cell){
     if (cell.neighborCount > 3) {
-      board.gridCopy[cell.y][cell.x].life = false;
+      self.gridCopy[cell.y][cell.x].life = false;
     }
   });
 }
 
+// Rule 4:
+// Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction
 Board.prototype.rule4 = function () {
   var allCells = this.allCells();
   this.gridCopy = this.grid;
+  var self = this
   _.each(allCells, function(cell){
     if (cell.neighborCount === 3) {
-      board.gridCopy[cell.y][cell.x].life = true;
+      self.gridCopy[cell.y][cell.x].life = true;
     }
   });
 }
 
 //Helper methods
-var randomLife = function (x,y) {
+
+// Randomly spring new life into action!
+Board.prototype.randomLife = function (x,y) {
   var rand = Math.floor(Math.random()*2);
   if (rand === 1) {
     cell = new Cell(x,y,true);
@@ -118,9 +145,3 @@ var randomLife = function (x,y) {
     return cell;
   }
 };
-
-
-board = new Board
-board.initializeGrid(20);
-board.checkBoard();
-
